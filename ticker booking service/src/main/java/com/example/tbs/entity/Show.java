@@ -1,4 +1,4 @@
-package com.example.tbs.Entity;
+package com.example.tbs.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
