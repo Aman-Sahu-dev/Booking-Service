@@ -15,7 +15,7 @@ public class ShowResponse {
     private Long showId;
     private int totalSeats;
     private String name;
+    private int availableSeats;
     private String venue;
     private LocalDateTime showTime;
-    private int availableSeats;
 }
