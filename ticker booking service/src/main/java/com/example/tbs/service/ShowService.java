@@ -16,6 +16,7 @@ public class ShowService {
 
     private ShowResponse toResponse(Show show){
         return ShowResponse.builder()
+                .showId(show.getId())
                 .name(show.getName())
                 .venue(show.getVenue())
                 .showTime(show.getDateTime())
@@ -31,7 +32,7 @@ public class ShowService {
                 .venue(request.getVenue())
                 .dateTime(request.getShowTime())
                 .totalSeats(request.getTotalSeats())
-                .availableSeats(request.getAvailableSeats())
+                .availableSeats(request.getTotalSeats())
                 .build();
         showRepository.save(show);
         return toResponse(show);
