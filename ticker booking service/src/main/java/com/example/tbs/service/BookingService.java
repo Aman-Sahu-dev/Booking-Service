@@ -18,6 +18,7 @@ public class BookingService {
     private final ShowRepository showRepository;
     private final UserRepository userRepository;
     private final BookingRepository bookingRepository;
+    private final KafkaProducerService kafkaProducerService;
 
     private BookingResponse toResponse(Booking booking){
         return BookingResponse.builder()
@@ -50,6 +51,12 @@ public class BookingService {
                 .user(user)
                 .build();
         bookingRepository.save(booking);
+        kafkaProducerService.sendBookingEvent(
+                "BOOKING_CONFIRMED::" + booking.getId() +
+                        "::USER::" + booking.getUser().getName() +
+                        "::SEAT::" + booking.getSeat().getSeatNumber() +
+                        "::SHOW::" + booking.getShow().getName()
+        );
         return toResponse(booking);
     }
     @Transactional
